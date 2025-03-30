@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Silkscreen&display=swap" rel="stylesheet">
+    <title>Spalanie</title>
+    <script>
+        function x(){
+            if( document.getElementById( "ben" ).checked )
+ return 6.47;
+ if( document.getElementById( "gaz" ).checked )
+ return 3.19;
+ if( document.getElementById( "on" ).checked )
+ return 6.57;
+        }
+
+        function spalanie(){
+            var d = Number( document.getElementById("d").value);
+            var s = Number( document.getElementById("s").value);
+            var out = document.getElementById("w");
+            var licz = (s*100)/d;
+            var km = (licz/100) * x();
+            var cal = km*d;
+
+            if (d != 0){
+                out.innerHTML = "Spalanie: " + licz.toFixed(2)  + " L/100km<br />";
+                out.innerHTML += "Szacunkowy koszt przejzdu 1km to: " + km.toFixed(2) + "zł<br/>";
+                out.innerHTML += "Szacunkowy koszt przejzdu: " + cal.toFixed(2) + "zł";
+            }else
+                out.innerHTML = "Dystans musi być liczbą dodatnią!";
+        }
+    </script>
+    <style>
+       
+
+</style>
+</head>
+<div class="nav"><h1>Obliczanie spalania </h1></div>
+<div class="card">
+    <div class="card__content">
+        <p>Podaj dystans:</p>
+        <div class="inputGroup">
+            
+            <input type="number" id="d" required="" autocomplete="off" style="margin-top: 10px;">
+            <label for="name">Dystans</label>
+        </div><br>
+        <p>Podaj średnie spalanie</p>
+        <div class="inputGroup">
+            
+            <input type="number" id="s" required="" autocomplete="off" style="margin-top: 10px;">
+            <label for="name">Spalanie</label>
+        </div>
+        <br>
+        <form name="paliwo">
+        <div class="radio-input">
+            <label class="label">
+              <input
+                type="radio"
+                id="ben"
+                checked=""
+                name="value-radio"
+                value="6.47"
+              />
+              <p class="text">Benzyna</p>
+            </label>
+            <label class="label">
+              <input type="radio" id="gaz" name="value-radio" value="3.19" />
+              <p class="text">Gaz</p>
+            </label>
+            <label class="label">
+              <input type="radio" id="on" name="value-radio" value="6.57" />
+              <p class="text">Diesel</p>
+            </label>
+          </div>
+        </form>
+
+
+
+
+        <button type="submit" onclick="spalanie()">
+            OBLICZ
+        </button>
+        <p id="w" style="margin-left: -45px;"></p>
+    </div></div>
+    </body>
+</html>
